@@ -27,6 +27,7 @@ def condition(index, problem):
 
     return True
 
+
 def sudokusolver(problem):
     stack = []
     stack.append(0)
@@ -37,19 +38,18 @@ def sudokusolver(problem):
             if problem[i][j] != 0:
                 dontvisit.append([i, j])
 
-    while (stack != [] and stack[-1]!=81):
-        
+    while (stack != []):
         index = numbertoindex(stack[-1])
-        
         while True:
             if (index in dontvisit):
                 stack[-1] += 1
                 index = numbertoindex(stack[-1])
                 continue
             break
-            
-        i = problem[index[0]][index[1]]
         
+        if(stack[-1] == 81): break
+
+        i = problem[index[0]][index[1]]
         while (i < 10):
             if (i == 9):
                 problem[index[0]][index[1]] = 0
@@ -57,10 +57,8 @@ def sudokusolver(problem):
                 break
             else:
                 problem[index[0]][index[1]] = i + 1
-                
                 if (condition(index, problem)):
                     stack.append(stack[-1] + 1)
                     break
             i += 1
-            
     return problem
