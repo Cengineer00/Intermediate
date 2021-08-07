@@ -1,4 +1,4 @@
-import SudokuSolver as solver
+import solver as solver
 import time
 
 start_time = time.time()
